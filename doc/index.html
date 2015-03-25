@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!file.README.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'>
+<h1 id="label-UtilityAPI">UtilityAPI</h1>
+
+<h2 id="label-Overview">Overview</h2>
+
+<blockquote>
+<p>UtilityAPI enables the new energy economy one data set at a time.</p>
+</blockquote>
+
+<p>UtilityAPI is an enterprise software company that delivers simple access to
+energy usage data. We aim to solve one of the biggest soft cost problems in
+the industry. We are currently in the SfunCube Solar Accelerator Program,
+as well as the Department of Energy&#39;s SunShot Catalyst Program.</p>
+
+<p>This gem is a ruby SDK for the UtilityAPI web API. Currently it provides
+access to most of the web interface features, including all sorts of
+operations with accounts and services. The SDK methods can be called either
+synchronously or asynchronously.</p>
+
+<h2 id="label-Setup+Prerequisites">Setup Prerequisites</h2>
+
+<p>To use this SDK you need to:</p>
+<ul><li>
+<p>install Ruby 2.*</p>
+</li><li>
+<p>obtain the access token at the <a
+href="https://www.utilityapi.com">UtilityAPI website</a>:</p>
+<ul><li>
+<p>create an account at <a
+href="https://utilityapi.com/api/users/new.html">utilityapi.com/api/users/new.html</a>
+and login  to it</p>
+</li><li>
+<p>go to settings (use top right corner gear to navigate to settings page)</p>
+</li><li>
+<p>in the Tokens table add a new token of type API</p>
+</li></ul>
+</li></ul>
+
+<h2 id="label-How+to+install">How to install</h2>
+
+<p>Checkout the repository, or download an unpack the archive. In the root
+folder of this project run:</p>
+
+<pre class="code ruby"><code class="ruby">$ gem build utilityapi.gemspec</code></pre>
+
+<p>to build the gem, and:</p>
+
+<pre class="code ruby"><code class="ruby">$ gem install utilityapi-*.gem</code></pre>
+
+<p>to install it (the wildcard can be replaced with the exact filename printed
+by <code>gem build</code>).</p>
+
+<h2 id="label-Including+in+your+project">Including in your project</h2>
+
+<p>Write:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>utilityapi</span><span class='tstring_end'>&#39;</span></span>
+</code></pre>
+
+<p>at the top of the files where you would like to use this SDK. Then you will
+be able to use all the provided API.</p>
+
+<h2 id="label-Usage">Usage</h2>
+
+<p>This library has the following structure:</p>
+<ul><li>
+<p><code>UtilityApi::Endpoints</code> namespace contains all the supported
+endpoints.  Currently there are <code>AccountsApi</code> and
+<code>ServicesApi</code>.</p>
+</li><li>
+<p><code>UtilityApi::Models</code> namespace contains the models of entities
+which are  either received from the API or sent to it.</p>
+</li><li>
+<p><code>UtilityApi</code> namespace itself contains helper and convenience
+classes. Two of  them are to be commonly used:
+<code>AccountsUtilities</code> which provide relatively  complex actions
+with accounts, and <code>Client</code> that incorporates instances of all 
+the <code>Endpoints</code> classes and <code>AccountsUtilities</code> for
+ease of access.</p>
+</li></ul>
+
+<h3 id="label-Basic+usage">Basic usage</h3>
+
+<p>The most basic workflow using this SDK consists of two steps:</p>
+<ul><li>
+<p>instantiate the endpoint you&#39;d want to use, providing the access token
+and  base API URL, if it differs from the default</p>
+</li><li>
+<p>make the requests you need</p>
+</li></ul>
+
+<h4 id="label-Using+AccountsApi">Using <code>AccountsApi</code></h4>
+
+<p>Get the list of accounts:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_access_token'>access_token</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>...</span><span class='tstring_end'>&#39;</span></span>
+<span class='id identifier rubyid_accounts_api'>accounts_api</span> <span class='op'>=</span> <span class='const'>UtilityApi</span><span class='op'>::</span><span class='const'>Endpoints</span><span class='op'>::</span><span class='const'>AccountsApi</span><span class='lparen'>(</span><span class='id identifier rubyid_access_token'>access_token</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_accounts'>accounts</span> <span class='op'>=</span> <span class='id identifier rubyid_accounts_api'>accounts_api</span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span>
+<span class='comment'># process accounts</span></code></pre>
+
+<h4 id="label-Using+ServicesApi">Using <code>ServicesApi</code></h4>
+
+<p>Get the list of services:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_access_token'>access_token</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>...</span><span class='tstring_end'>&#39;</span></span>
+<span class='id identifier rubyid_services_api'>services_api</span> <span class='op'>=</span> <span class='const'>UtilityApi</span><span class='op'>::</span><span class='const'>Endpoints</span><span class='op'>::</span><span class='const'>ServicesApi</span><span class='lparen'>(</span><span class='id identifier rubyid_access_token'>access_token</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_services'>services</span> <span class='op'>=</span> <span class='id identifier rubyid_services_api'>services_api</span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span>
+<span class='comment'># process services</span></code></pre>
+
+<h4 id="label-Using+AccountsUtilities">Using <code>AccountsUtilities</code></h4>
+
+<p>Create a new account and get all the service data for it:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_access_token'>access_token</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>...</span><span class='tstring_end'>&#39;</span></span>
+<span class='id identifier rubyid_account_options'>account_options</span> <span class='op'>=</span> <span class='const'>UtilityApi</span><span class='op'>::</span><span class='const'>Models</span><span class='op'>::</span><span class='const'>AccountOptions</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='comment'># specify options in constructor
+</span><span class='id identifier rubyid_accounts_utilities'>accounts_utilities</span> <span class='op'>=</span> <span class='const'>UtilityApi</span><span class='op'>::</span><span class='const'>Endpoints</span><span class='op'>::</span><span class='const'>AccountsUtilities</span><span class='lparen'>(</span><span class='id identifier rubyid_access_token'>access_token</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_accounts_utilities'>accounts_utilities</span><span class='period'>.</span><span class='id identifier rubyid_create_account'>create_account</span><span class='lparen'>(</span><span class='id identifier rubyid_account_options'>account_options</span><span class='rparen'>)</span>
+<span class='comment'># process result[:account], result[:service], result[:bills]</span></code></pre>
+
+<h4 id="label-Using+Client">Using <code>Client</code></h4>
+
+<p>For convenience, especially if several endpoints are needed, you can use
+the <code>Client</code> class:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_access_token'>access_token</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>...</span><span class='tstring_end'>&#39;</span></span>
+<span class='id identifier rubyid_client'>client</span> <span class='op'>=</span> <span class='const'>UtilityApi</span><span class='op'>::</span><span class='const'>Client</span><span class='lparen'>(</span><span class='id identifier rubyid_access_token'>access_token</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_accounts'>accounts</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_accounts'>accounts</span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span>
+<span class='id identifier rubyid_services'>services</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_services'>services</span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span>
+<span class='comment'># process accounts and services
+</span><span class='id identifier rubyid_accounts_utilities'>accounts_utilities</span><span class='period'>.</span><span class='id identifier rubyid_create_account'>create_account</span><span class='lparen'>(</span><span class='id identifier rubyid_account_options'>account_options</span><span class='rparen'>)</span></code></pre>
+
+<h3 id="label-Calling+any+method+asynchronously">Calling any method asynchronously</h3>
+
+<p>Any API method of this SDK can be called asynchronously. To do this, you
+just need to call <code>.async</code> on an endpoint, and the call the
+method as usual:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_thread'>thread</span> <span class='op'>=</span> <span class='id identifier rubyid_accounts_api'>accounts_api</span><span class='period'>.</span><span class='id identifier rubyid_async'>async</span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span>
+<span class='comment'># ... other operations, while the request is done in the background ...
+</span><span class='id identifier rubyid_accounts'>accounts</span> <span class='op'>=</span> <span class='id identifier rubyid_thread'>thread</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span> <span class='comment'># blocks until completed and raises errors, if any</span></code></pre>
+
+<p>Another possibility is to specify a callback:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_thread'>thread</span> <span class='op'>=</span> <span class='id identifier rubyid_accounts_api'>accounts_api</span><span class='period'>.</span><span class='id identifier rubyid_async'>async</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_accounts'>accounts</span><span class='op'>|</span> <span class='id identifier rubyid_process'>process</span> <span class='id identifier rubyid_accounts'>accounts</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span>
+<span class='comment'># ... other operations, while the request is done in the background ...
+</span><span class='id identifier rubyid_thread'>thread</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span> <span class='comment'># blocks until completed and raises errors, if any
+</span></code></pre>
+
+<p>and an errback to handle errors:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_thread'>thread</span> <span class='op'>=</span> <span class='id identifier rubyid_accounts_api'>accounts_api</span><span class='period'>.</span>
+  <span class='id identifier rubyid_async'>async</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_accounts'>accounts</span><span class='op'>|</span> <span class='id identifier rubyid_process'>process</span> <span class='id identifier rubyid_accounts'>accounts</span> <span class='rbrace'>}</span>
+  <span class='id identifier rubyid_onerror!'>onerror!</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_e'>e</span><span class='op'>|</span> <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_e'>e</span> <span class='rbrace'>}</span><span class='period'>.</span>
+  <span class='id identifier rubyid_list'>list</span>
+<span class='comment'># ... other operations, while the request is done in the background ...
+</span><span class='id identifier rubyid_thread'>thread</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span> <span class='comment'># only blocks, no errors raised here
+</span></code></pre>
+
+<p>This works with all the endpoints, and with <code>AccountsUtilities</code>.</p>
+
+<h2 id="label-Documentation">Documentation</h2>
+
+<p>The complete HTML documentation can be found in the <code>doc/</code>
+folder of the project <em>(and later at a web address)</em>. It is
+generated using YARD from TomDoc-style comments in the code.</p>
+
+<p>Execute</p>
+
+<pre class="code ruby"><code class="ruby">$ rake yard</code></pre>
+
+<p>to generate the HTML documentation from source files anew.</p>
+
+<p>The UtilityAPI web API documentation can be found at <a
+href="https://utilityapi.com/api/docs/api.html">utilityapi.com/api/docs/api.html</a>.</p>
+
+<h2 id="label-SDK+Limitations+and+Notes">SDK Limitations and Notes</h2>
+
+<p>Currently only services and accounts endpoints are supported, no operations
+with users and tokens implemented.</p>
+
+<p>There are several <code>XXX</code> markers in the code and tests which
+point at different flaws in the UtilityAPI web API, such as wrong HTTP code
+returned, undocumented field, or absence of a documented one. They
+correspond to the web API itself, and don&#39;t mean errors in this SDK.</p>
+
+<h2 id="label-Testing+the+SDK">Testing the SDK</h2>
+
+<p>The SDK is thoroughly tested using RSpec, and code coverage is more than
+98% (calculated with SimpleCov). There are tests both for normal operations
+of methods (synchronous and asynchronous), and different error conditions.</p>
+
+<p>To run the tests, install the gem locally by executing:</p>
+
+<pre class="code ruby"><code class="ruby">$ bundle</code></pre>
+
+<p>in the root directory of the project. Then run:</p>
+
+<pre class="code ruby"><code class="ruby">$ rake spec</code></pre>
+
+<p>to actually run all the RSpec tests. They may take quite a while, because
+real requests to the remote server are used. All tests should pass, if
+there are no unexpected server errors. Detailed coverage report is
+generated in the <code>coverage/</code> directory.</p>
+
+<p>The names of each testcase and their groups are self-explanatory, and
+helper functions used in testing have comments. When the autogenerated
+testcase name reads well and clear, explicit name was not given. Also there
+is a small amount of repeating code in test cases, but this was not removed
+to keep the cases clear and error-free.</p>
+
+<h2 id="label-Contributing">Contributing</h2>
+<ol><li>
+<p>Fork it (<a href="https://github.com/repo/fork">github.com/repo/fork</a>)
+<em>not published yet!</em></p>
+</li><li>
+<p>Create your feature branch (<code>git checkout -b my-new-feature</code>)</p>
+</li><li>
+<p>Commit your changes (<code>git commit -am &#39;Add some
+feature&#39;</code>)</p>
+</li><li>
+<p>Push to the branch (<code>git push origin my-new-feature</code>)</p>
+</li><li>
+<p>Create a new Pull Request</p>
+</li></ol>
+</div></div>
+
+    <div id="footer">
+  Generated on Tue Mar 24 07:26:04 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.1.5).
+</div>
+
+  </body>
+</html>

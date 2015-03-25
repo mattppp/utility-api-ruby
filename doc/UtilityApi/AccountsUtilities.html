@@ -1,0 +1,1001 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: UtilityApi::AccountsUtilities
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../';
+  framesUrl = "../frames.html#!UtilityApi/AccountsUtilities.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (A)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../UtilityApi.html" title="UtilityApi (module)">UtilityApi</a></span></span>
+     &raquo; 
+    <span class="title">AccountsUtilities</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: UtilityApi::AccountsUtilities
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">UtilityApi::AccountsUtilities</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+      <dt class="r2">Includes:</dt>
+      <dd class="r2"><span class='object_link'><a href="Asyncable.html" title="UtilityApi::Asyncable (module)">Asyncable</a></span></dd>
+      
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/utilityapi/accounts_utilities.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Various methods to work with accounts. The methods call different endpoints
+APIs (not only AccountsApi), so they cannot reside in AccountsApi. Supports
+performing all the methods asynchronously.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#access_token-instance_method" title="#access_token (instance method)">- (String) <strong>access_token</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The API access token.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#accounts-instance_method" title="#accounts (instance method)">- (AccountsApi) <strong>accounts</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The created AccountsApi instance.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#base_url-instance_method" title="#base_url (instance method)">- (String) <strong>base_url</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The API base URL.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#retry_delay-instance_method" title="#retry_delay (instance method)">- (Float) <strong>retry_delay</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The delay beween retries, in seconds.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#services-instance_method" title="#services (instance method)">- (ServicesApi) <strong>services</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The created ServicesApi instance.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create_account-instance_method" title="#create_account (instance method)">- (Hash) <strong>create_account</strong>(options, active_until = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Create an account with the provided utility authorization and access
+information, activate the service corresponding to it, and get all the
+bills for this service.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (AccountsUtilities) <strong>initialize</strong>(access_token, base_url = BASE_URL, retry_delay = RETRY_DELAY) </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Initialize an AccountsUtilities object.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Asyncable.html" title="UtilityApi::Asyncable (module)">Asyncable</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Asyncable.html#async-instance_method" title="UtilityApi::Asyncable#async (method)">#async</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="UtilityApi::AccountsUtilities (class)">AccountsUtilities</a></span></tt>) <strong>initialize</strong>(access_token, base_url = BASE_URL, retry_delay = RETRY_DELAY) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Initialize an AccountsUtilities object. Also instantiates AccountsApi,
+ServicesApi as they both are required for this class methods.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>base_url</span>
+      
+      
+        <span class='type'></span>
+      
+      
+        <em class="default">(defaults to: <tt>BASE_URL</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The String with the base URL of the API.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>access_token</span>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The String with a generated API access token.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>retry_delay</span>
+      
+      
+        <span class='type'></span>
+      
+      
+        <em class="default">(defaults to: <tt>RETRY_DELAY</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The Float number of seconds to wait between tries.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+40
+41
+42
+43
+44
+45
+46</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/utilityapi/accounts_utilities.rb', line 40</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_access_token'>access_token</span><span class='comma'>,</span> <span class='id identifier rubyid_base_url'>base_url</span> <span class='op'>=</span> <span class='const'>BASE_URL</span><span class='comma'>,</span> <span class='id identifier rubyid_retry_delay'>retry_delay</span> <span class='op'>=</span> <span class='const'>RETRY_DELAY</span><span class='rparen'>)</span>
+  <span class='ivar'>@base_url</span> <span class='op'>=</span> <span class='id identifier rubyid_base_url'>base_url</span>
+  <span class='ivar'>@access_token</span> <span class='op'>=</span> <span class='id identifier rubyid_access_token'>access_token</span>
+  <span class='ivar'>@accounts</span> <span class='op'>=</span> <span class='const'>Endpoints</span><span class='op'>::</span><span class='const'>AccountsApi</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_access_token'>access_token</span><span class='comma'>,</span> <span class='id identifier rubyid_base_url'>base_url</span><span class='rparen'>)</span>
+  <span class='ivar'>@services</span> <span class='op'>=</span> <span class='const'>Endpoints</span><span class='op'>::</span><span class='const'>ServicesApi</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_access_token'>access_token</span><span class='comma'>,</span> <span class='id identifier rubyid_base_url'>base_url</span><span class='rparen'>)</span>
+  <span class='ivar'>@retry_delay</span> <span class='op'>=</span> <span class='id identifier rubyid_retry_delay'>retry_delay</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="access_token-instance_method">
+  
+    - (<tt>String</tt>) <strong>access_token</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>The API access token.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the current value of access_token</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+28
+29
+30</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/utilityapi/accounts_utilities.rb', line 28</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_access_token'>access_token</span>
+  <span class='ivar'>@access_token</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="accounts-instance_method">
+  
+    - (<tt>AccountsApi</tt>) <strong>accounts</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>The created AccountsApi instance.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>AccountsApi</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the current value of accounts</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+28
+29
+30</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/utilityapi/accounts_utilities.rb', line 28</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_accounts'>accounts</span>
+  <span class='ivar'>@accounts</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="base_url-instance_method">
+  
+    - (<tt>String</tt>) <strong>base_url</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>The API base URL.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the current value of base_url</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+28
+29
+30</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/utilityapi/accounts_utilities.rb', line 28</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_base_url'>base_url</span>
+  <span class='ivar'>@base_url</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="retry_delay-instance_method">
+  
+    - (<tt>Float</tt>) <strong>retry_delay</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>The delay beween retries, in seconds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Float</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the current value of retry_delay</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+28
+29
+30</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/utilityapi/accounts_utilities.rb', line 28</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_retry_delay'>retry_delay</span>
+  <span class='ivar'>@retry_delay</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="services-instance_method">
+  
+    - (<tt>ServicesApi</tt>) <strong>services</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>The created ServicesApi instance.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ServicesApi</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the current value of services</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+28
+29
+30</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/utilityapi/accounts_utilities.rb', line 28</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_services'>services</span>
+  <span class='ivar'>@services</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="create_account-instance_method">
+  
+    - (<tt>Hash</tt>) <strong>create_account</strong>(options, active_until = nil) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Create an account with the provided utility authorization and access
+information, activate the service corresponding to it, and get all the
+bills for this service. Activating service means setting it active_until
+date in the future, which is one year from now by default. This method
+waits for the account and service to be completely created and for the
+bills to be loaded, so it can take a while to return. Consider calling
+asynchronously.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The account options as AccountOptions.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>active_until</span>
+      
+      
+        <span class='type'></span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A Time object until which the service should be active. (default: nil,
+which corresponds to one year from now)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>{ account: added account as Account, service: the service corresponding to
+this account as Service, bills: all the bills for this service as an Array
+of Bill }</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'>
+<p>Errors::BadRequest if the options are malformed (HTTP 400).</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'>
+<p>Errors::BaseError or subclass if another HTTP error code received.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/utilityapi/accounts_utilities.rb', line 68</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_create_account'>create_account</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='id identifier rubyid_active_until'>active_until</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_added'>added</span> <span class='op'>=</span> <span class='id identifier rubyid_accounts'>accounts</span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+
+  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_sleep'>sleep</span> <span class='ivar'>@retry_delay</span>
+    <span class='id identifier rubyid_acc'>acc</span> <span class='op'>=</span> <span class='id identifier rubyid_accounts'>accounts</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='id identifier rubyid_added'>added</span><span class='period'>.</span><span class='id identifier rubyid_uid'>uid</span><span class='rparen'>)</span>
+  <span class='kw'>end</span> <span class='kw'>while</span> <span class='id identifier rubyid_acc'>acc</span><span class='period'>.</span><span class='id identifier rubyid_latest'>latest</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>pending</span><span class='tstring_end'>&#39;</span></span>
+
+  <span class='kw'>unless</span> <span class='id identifier rubyid_acc'>acc</span><span class='period'>.</span><span class='id identifier rubyid_latest'>latest</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>updated</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Errors</span><span class='op'>::</span><span class='const'>BaseError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>account type didn&#39;t become updated</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_svcs'>svcs</span> <span class='op'>=</span> <span class='id identifier rubyid_services'>services</span><span class='period'>.</span><span class='id identifier rubyid_list_for_account'>list_for_account</span><span class='lparen'>(</span><span class='id identifier rubyid_acc'>acc</span><span class='period'>.</span><span class='id identifier rubyid_uid'>uid</span><span class='rparen'>)</span>
+
+  <span class='kw'>unless</span> <span class='id identifier rubyid_svcs'>svcs</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='op'>==</span> <span class='int'>1</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Errors</span><span class='op'>::</span><span class='const'>BaseError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_svcs'>svcs</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span><span class='embexpr_end'>}</span><span class='tstring_content'> services for account, expected 1</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_svc'>svc</span> <span class='op'>=</span> <span class='id identifier rubyid_svcs'>svcs</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_active_until'>active_until</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='id identifier rubyid_active_until'>active_until</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span> <span class='op'>+</span> <span class='int'>1</span><span class='op'>*</span><span class='int'>365</span><span class='op'>*</span><span class='int'>24</span><span class='op'>*</span><span class='int'>3600</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_svc_options'>svc_options</span> <span class='op'>=</span> <span class='const'>Models</span><span class='op'>::</span><span class='const'>ServiceOptions</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>active_until:</span> <span class='id identifier rubyid_active_until'>active_until</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_services'>services</span><span class='period'>.</span><span class='id identifier rubyid_modify'>modify</span><span class='lparen'>(</span><span class='id identifier rubyid_svc'>svc</span><span class='period'>.</span><span class='id identifier rubyid_uid'>uid</span><span class='comma'>,</span> <span class='id identifier rubyid_svc_options'>svc_options</span><span class='rparen'>)</span>
+
+  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_sleep'>sleep</span> <span class='ivar'>@retry_delay</span>
+    <span class='id identifier rubyid_svc'>svc</span> <span class='op'>=</span> <span class='id identifier rubyid_services'>services</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='id identifier rubyid_svc'>svc</span><span class='period'>.</span><span class='id identifier rubyid_uid'>uid</span><span class='rparen'>)</span>
+  <span class='kw'>end</span> <span class='kw'>while</span> <span class='id identifier rubyid_svc'>svc</span><span class='period'>.</span><span class='id identifier rubyid_latest'>latest</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>pending</span><span class='tstring_end'>&#39;</span></span>
+
+  <span class='kw'>unless</span> <span class='id identifier rubyid_svc'>svc</span><span class='period'>.</span><span class='id identifier rubyid_latest'>latest</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>updated</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Errors</span><span class='op'>::</span><span class='const'>BaseError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>service type didn&#39;t become updated</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+
+  <span class='lbrace'>{</span>
+    <span class='label'>account:</span> <span class='id identifier rubyid_acc'>acc</span><span class='comma'>,</span>
+    <span class='label'>service:</span> <span class='id identifier rubyid_svc'>svc</span><span class='comma'>,</span>
+    <span class='label'>bills:</span> <span class='id identifier rubyid_services'>services</span><span class='period'>.</span><span class='id identifier rubyid_bills'>bills</span><span class='lparen'>(</span><span class='id identifier rubyid_svc'>svc</span><span class='period'>.</span><span class='id identifier rubyid_uid'>uid</span><span class='rparen'>)</span>
+  <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Tue Mar 24 07:26:06 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.1.5).
+</div>
+
+  </body>
+</html>
