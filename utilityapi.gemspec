@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.version       = UtilityApi::VERSION
   spec.author        = 'AUTHOR'
   spec.email         = 'EMAIL'
-  spec.homepage      = 'HOMEPAGE'
+  spec.homepage      = 'https://github.com/utilityapi/ruby-sdk'
 
   spec.summary       = 'Ruby SDK for the Utility API websity API: http://utilityapi.com/api.'
   spec.description   = <<-DESCRIPTION
