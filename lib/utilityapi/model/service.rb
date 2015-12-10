@@ -120,7 +120,7 @@ module UtilityApi
       :utility_tariff_name, :utility_service_address, :utility_billing_account,
       :utility_billing_contact, :utility_billing_address, :utility_meter_number,
       :bill_count, :interval_count, :created, :active_until, :latest,
-      :bill_coverage, :interval_coverage,
+      :bill_coverage, :interval_coverage, :service_class,
       :bill_sources, # XXX: this is not documented in the API
       #:modified # XXX: this is listed in docs, but not returned
       )
