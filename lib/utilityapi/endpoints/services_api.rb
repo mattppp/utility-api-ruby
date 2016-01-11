@@ -35,6 +35,19 @@ module UtilityApi
         end
       end
 
+      # Public: Get a csv of bills for a service.
+      #
+      # uid - The String with a service uid.
+      #
+      # Returns CSV String of the bills.
+      # Raises Errors::NotFound if the uid is not found (HTTP 404).
+      # Raises Errors::BaseError or subclass if an HTTP error code received.
+      def bills_csv(uid)
+        @connection.headers[:Accept] = 'text/csv'
+
+        @connection.get("#{uid}/bills").body
+      end
+
       # Public: Get the raw bills for a service as a zip archive.
       #
       # uid - The String with a service uid.
@@ -69,6 +82,19 @@ module UtilityApi
         @connection.get("#{uid}/intervals").body.map do |hash|
           Models::Interval.new(hash)
         end
+      end
+
+      # Public: Get a CSV of intervals for a service.
+      #
+      # uid - The String with a service uid.
+      #
+      # Returns CSV String of the intervals.
+      # Raises Errors::NotFound if the uid is not found (HTTP 404).
+      # Raises Errors::BaseError or subclass if an HTTP error code received.
+      def intervals_csv(uid)
+        @connection.headers[:Accept] = 'text/csv'
+
+        @connection.get("#{uid}/intervals").body
       end
 
       # Public: Get the list of services corresponding to an account.
