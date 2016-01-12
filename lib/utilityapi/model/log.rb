@@ -22,7 +22,7 @@ module UtilityApi
     #
     # Attr: message [String] The message of the log entry. These may change, so
     # don't rely on their syntax.
-    class Log < Struct.new(:type, :message, :timestamp)
+    class Log < Struct.new(:type, :message, :timestamp, :code)
       include BaseModel
 
       # Public: Initialize the Log object. The only thing different from the
