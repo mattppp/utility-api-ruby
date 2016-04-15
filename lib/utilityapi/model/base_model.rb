@@ -32,6 +32,10 @@ module UtilityApi
         ]
         hash_processed.to_json(opts)
       end
+
+      def notes=(opts = {})
+
+      end
     end
   end
 end
